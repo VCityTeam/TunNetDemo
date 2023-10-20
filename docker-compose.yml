@@ -1,0 +1,21 @@
+version: "3.3"
+
+services:
+
+  tunnetgen:
+    build:
+        context: https://github.com/VCityTeam/TunNetGen.git
+        dockerfile: docker/PureCPP/Dockerfile
+    volumes: # FIXME change tunnetgen command so it uses a --output-dir flag
+      - ./results:/PureCPP/output
+
+  py3dtiles:
+    build:
+      context: https://gitlab.com/oslandia/py3dtiles.git
+      dockerfile: docker/Dockerfile
+    command: convert /input/pc.xyz --out /input/toto
+    volumes:
+      - ./results:/input
+    depends_on: 
+      tunnetgen:
+        condition: service_completed_successfully

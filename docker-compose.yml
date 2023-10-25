@@ -6,14 +6,15 @@ services:
     build:
         context: https://github.com/VCityTeam/TunNetGen.git
         dockerfile: docker/PureCPP/Dockerfile
-    volumes: # FIXME change tunnetgen command so it uses a --output-dir flag
-      - ./results:/PureCPP/output
+    volumes:
+      - ./results:/TunNetGenCpp/output
+    command: -o output/pc.xyz
 
   py3dtiles:
     build:
       context: https://gitlab.com/oslandia/py3dtiles.git
       dockerfile: docker/Dockerfile
-    command: convert /input/pc.xyz --out /input/toto
+    command: convert /input/pc.xyz --out /input/3dtiles
     volumes:
       - ./results:/input
     depends_on: 

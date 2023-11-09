@@ -13,4 +13,6 @@ The results :
 - point cloud in xyz format
 - 3dtiles
 
-will appear in a newly created **data** directory
+will appear in a newly created **results** directory
+
+**Warning** Because rights can be granted to root for the created directory, you may need to create the **results** directory before running the up command.

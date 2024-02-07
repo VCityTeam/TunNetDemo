@@ -1,0 +1,8 @@
+[
+  {
+    "name": "TunNetGen point cloud",
+    "source": {
+      "url": "./data/3dtiles/tileset.json"
+    }
+  }
+]

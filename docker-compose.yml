@@ -17,6 +17,19 @@ services:
     command: convert /input/pc.xyz --out /input/3dtiles
     volumes:
       - ./results:/input
-    depends_on: 
+    depends_on:
       tunnetgen:
+        condition: service_completed_successfully
+
+  tunnetview:
+    build:
+      context: https://github.com/VCityTeam/TunNetView-docker.git
+      dockerfile: Context/Dockerfile
+    volumes:
+      - ./results:/TunNetView/data
+      - ./3DTiles_point_cloud.json:/TunNetView/assets/config/layer/3DTiles_point_cloud.json
+    ports:
+      - 8000:8080
+    depends_on:
+      py3dtiles:
         condition: service_completed_successfully
